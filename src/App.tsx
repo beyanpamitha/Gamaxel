@@ -1,5 +1,6 @@
 import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
 import "./App.css";
+import NavBar from "./components/NavBar";
 
 function App() {
   const showSideBar = useBreakpointValue({ base: false, lg: true }); //to hide side bar in mobile view
@@ -12,7 +13,7 @@ function App() {
       }}
     >
       <GridItem area="nav" bg="blue.500">
-        NavBar
+        <NavBar />
       </GridItem>
 
       {showSideBar && (
