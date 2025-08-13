@@ -1,0 +1,27 @@
+import { useEffect, useState } from "react";
+import apiClient from "../services/api-client";
+
+interface Game {
+  id: number; // This is the second interface, which describes the structure of each game object.
+  name: string;
+}
+
+interface FetchGamesResponse {
+  count: number; // This is the first interface, which describes the structure of the response we expect from the API.
+  results: Game[]; // Me result kiyana data eke type eka define karanna thamai uda interface eka hadanne.
+}
+
+const useGames = () => {
+  const [games, setGames] = useState<Game[]>([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    apiClient
+      .get<FetchGamesResponse>("/games")
+      .then((response) => setGames(response.data.results)) //response can't assign to 'result' because the type is not correct.we have to create an interface for the response.
+      .catch((error) => setError(error.message));
+  }, []);
+
+  return { games, error };
+};
+export default useGames;
