@@ -13,7 +13,7 @@ function App() {
         lg: `"nav nav" "aside main" "footer footer"`,
       }}
     >
-      <GridItem area="nav" bg="blue.500">
+      <GridItem area="nav">
         <NavBar />
       </GridItem>
 
@@ -23,7 +23,7 @@ function App() {
         </GridItem>
       )}
 
-      <GridItem area="main" bg="yellow.500">
+      <GridItem area="main">
         <GameGrid />
       </GridItem>
 

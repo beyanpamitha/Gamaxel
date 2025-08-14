@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 
-interface Game {
+export interface Game {
   id: number; // This is the second interface, which describes the structure of each game object.
   name: string;
+  background_image: string;
 }
 
 interface FetchGamesResponse {
