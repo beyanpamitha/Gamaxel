@@ -22,14 +22,23 @@ interface FetchGamesResponse {
 const useGames = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     apiClient
       .get<FetchGamesResponse>("/games")
-      .then((response) => setGames(response.data.results)) //response can't assign to 'result' because the type is not correct.we have to create an interface for the response.
-      .catch((error) => setError(error.message));
+      .then((response) => {
+        setGames(response.data.results); //response can't assign to 'result' because the type is not correct.we have to create an interface for the response.
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
 
-  return { games, error };
+  return { games, error, loading };
 };
 export default useGames;
