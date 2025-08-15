@@ -1,3 +1,7 @@
+/* useGames and useGenre are similar Hooks. So, there is 'duplication' on this project. To avoid duplication, I created useData 
+hook that can be used for both useGames and useGenre. So these two hooks can be replaced by useData hook, but I didn'd deleted 
+these hooks cause, this project is only for educational purposes.*/
+
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 
@@ -41,4 +45,4 @@ const useGames = () => {
 
   return { games, error, loading };
 };
-export default useGames;
+//export default useGames;
