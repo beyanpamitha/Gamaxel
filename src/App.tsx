@@ -2,6 +2,7 @@ import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
+import GenreList from "./components/GenreList";
 
 function App() {
   const showSideBar = useBreakpointValue({ base: false, lg: true }); //to hide side bar in mobile view
@@ -18,8 +19,8 @@ function App() {
       </GridItem>
 
       {showSideBar && (
-        <GridItem area="aside" bg="green.500">
-          Aside
+        <GridItem area="aside">
+          <GenreList />
         </GridItem>
       )}
 
