@@ -19,7 +19,7 @@ function App() {
       </GridItem>
 
       {showSideBar && (
-        <GridItem area="aside">
+        <GridItem area="aside" paddingX={5}>
           <GenreList />
         </GridItem>
       )}
