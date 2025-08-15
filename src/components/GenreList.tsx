@@ -1,11 +1,14 @@
-import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import { HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui/react";
 import useGenreUpdated from "../hooks/useGenreUpdated";
 import getOptimizedImageUrl from "../services/image-url";
 
 const GenreList = () => {
   //const { data } = useData<GenreUpdated>("/genres"); //We don't expose api data in a component like this in industry level project.
 
-  const { data } = useGenreUpdated(); //usnig the updated hook to fetch genre data and hide api request logic from the component.
+  const { data, loading, error } = useGenreUpdated(); //usnig the updated hook to fetch genre data and hide api request logic from the component.
+
+  if (error) return null;
+  if (loading) return <Spinner />;
 
   return (
     <List.Root listStyle={"none"}>
