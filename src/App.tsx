@@ -3,8 +3,11 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { useState } from "react";
+import type { GenreUpdated } from "./hooks/useGenreUpdated";
 
 function App() {
+  const [selectedGenre, setSelectedGenre] = useState<GenreUpdated | null>(null);
   const showSideBar = useBreakpointValue({ base: false, lg: true }); //to hide side bar in mobile view
 
   return (
@@ -20,12 +23,14 @@ function App() {
 
       {showSideBar && (
         <GridItem area="aside" paddingX={5}>
-          <GenreList />
+          <GenreList
+            onSelectedGenre={(genre: GenreUpdated) => setSelectedGenre(genre)}
+          />
         </GridItem>
       )}
 
       <GridItem area="main">
-        <GameGrid />
+        <GameGrid selectedGenre={selectedGenre} />
       </GridItem>
 
       <GridItem area="footer" bg="red.500">
