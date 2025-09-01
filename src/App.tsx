@@ -12,10 +12,22 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import type { GenreUpdated } from "./hooks/useGenreUpdated";
 import PlatformSelector from "./components/PlatformSelector";
+import type { platform } from "./hooks/useGamesUpdated";
+
+interface GameQuery {
+  genre: GenreUpdated | null;
+  platform: platform | null;
+}
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<GenreUpdated | null>(null);
   const showSideBar = useBreakpointValue({ base: false, lg: true }); //to hide side bar in mobile view
+
+  //Creating more useStates is not a best practise. So we create Query objects to avoid this.
+  // const [selectedGenre, setSelectedGenre] = useState<GenreUpdated | null>(null);
+  // const [selectedPlatform, setSelectedPlatform] = useState<platform | null>(
+  //   null
+  // );
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   return (
     <Grid
@@ -46,15 +58,25 @@ function App() {
           }}
         >
           <GenreList
-            onSelectedGenre={(genre: GenreUpdated) => setSelectedGenre(genre)}
-            selectedGenre={selectedGenre}
+            onSelectedGenre={(genre: GenreUpdated) =>
+              setGameQuery({ ...gameQuery, genre })
+            }
+            selectedGenre={gameQuery.genre}
           />
         </GridItem>
       )}
 
       <GridItem area="main" paddingY={5}>
-        <PlatformSelector />
-        <GameGrid selectedGenre={selectedGenre} />
+        <PlatformSelector
+          selectedPlatform={gameQuery.platform}
+          onSelectPlatform={(platform: platform) =>
+            setGameQuery({ ...gameQuery, platform })
+          }
+        />
+        <GameGrid
+          selectedPlatform={gameQuery.platform}
+          selectedGenre={gameQuery.genre}
+        />
       </GridItem>
 
       <GridItem area="footer" bg="red.500" w="full">

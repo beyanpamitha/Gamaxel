@@ -1,11 +1,6 @@
 import useData from "./useData";
+import type { platform } from "./useGamesUpdated";
 
-interface Platforms {
-  id: number;
-  name: string;
-  slug: string;
-}
-
-const usePlatforms = () => useData<Platforms>("/platforms/lists/parents");
+const usePlatforms = () => useData<platform>("/platforms/lists/parents");
 
 export default usePlatforms;
