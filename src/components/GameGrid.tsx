@@ -3,17 +3,14 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import useGamesUpdated, { type platform } from "../hooks/useGamesUpdated";
 import type { GenreUpdated } from "../hooks/useGenreUpdated";
+import type { GameQuery } from "../App";
 
 interface GameGridProps {
-  selectedGenre: GenreUpdated | null;
-  selectedPlatform: platform | null;
+  gameQuery: GameQuery;
 }
 
-const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
-  const { data, error, loading } = useGamesUpdated(
-    selectedGenre,
-    selectedPlatform
-  );
+const GameGrid = ({ gameQuery }: GameGridProps) => {
+  const { data, error, loading } = useGamesUpdated(gameQuery);
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
