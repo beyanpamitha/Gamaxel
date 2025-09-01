@@ -5,16 +5,16 @@ import {
   List,
   ListItem,
   Spinner,
-  Text,
 } from "@chakra-ui/react";
 import useGenreUpdated, { type GenreUpdated } from "../hooks/useGenreUpdated";
 import getOptimizedImageUrl from "../services/image-url";
 
 interface GenreListProps {
   onSelectedGenre: (genre: GenreUpdated) => void;
+  selectedGenre: GenreUpdated | null;
 }
 
-const GenreList = ({ onSelectedGenre }: GenreListProps) => {
+const GenreList = ({ onSelectedGenre, selectedGenre }: GenreListProps) => {
   //const { data } = useData<GenreUpdated>("/genres"); //We don't expose api data in a component like this in industry level project.
 
   const { data, loading, error } = useGenreUpdated(); //usnig the updated hook to fetch genre data and hide api request logic from the component.
@@ -33,7 +33,8 @@ const GenreList = ({ onSelectedGenre }: GenreListProps) => {
               src={getOptimizedImageUrl(genre.image_background)}
             />
             <Button
-              fontSize={"lg"}
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              fontSize={genre.id === selectedGenre?.id ? "xl" : "md"}
               variant={"ghost"}
               onClick={() => onSelectedGenre(genre)}
             >
