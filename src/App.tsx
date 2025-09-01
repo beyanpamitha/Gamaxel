@@ -1,10 +1,4 @@
-import {
-  Box,
-  Grid,
-  GridItem,
-  Show,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Box, Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
@@ -17,6 +11,7 @@ import type { platform } from "./hooks/useGamesUpdated";
 export interface GameQuery {
   genre: GenreUpdated | null;
   platform: platform | null;
+  searchText: string;
 }
 
 function App() {
@@ -37,7 +32,11 @@ function App() {
       }}
     >
       <GridItem area="nav" position={"sticky"} top={0} zIndex={1}>
-        <NavBar />
+        <NavBar
+          onSearch={(searchText: string) =>
+            setGameQuery({ ...gameQuery, searchText })
+          }
+        />
       </GridItem>
 
       {showSideBar && (

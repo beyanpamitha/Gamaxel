@@ -5,7 +5,6 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@chakra-ui/react";
-import React from "react";
 import usePlatforms from "../hooks/usePlatforms";
 import type { platform } from "../hooks/useGamesUpdated";
 import { IoIosArrowDown } from "react-icons/io";
@@ -25,7 +24,7 @@ const PlatformSelector = ({
 
   return (
     <MenuRoot>
-      <MenuTrigger asChild width={"20%"}>
+      <MenuTrigger asChild width={{ base: "100%", md: "20%" }}>
         <Button variant="outline" size="sm">
           {selectedPlatform ? selectedPlatform.name : "Select Platform"}
           <IoIosArrowDown />
