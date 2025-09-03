@@ -1,11 +1,11 @@
 import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
-import type { Game } from "../hooks/useGames";
+import type { GameUpdated } from "../hooks/useGamesUpdated";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getOptimizedImageUrl from "../services/image-url";
 
 interface GameCardProps {
-  game: Game;
+  game: GameUpdated;
 }
 
 const GameCard = ({ game }: GameCardProps) => {
