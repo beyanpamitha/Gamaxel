@@ -8,6 +8,7 @@ import type { GenreUpdated } from "./hooks/useGenreUpdated";
 import PlatformSelector from "./components/PlatformSelector";
 import type { platform } from "./hooks/useGamesUpdated";
 import GameHeading from "./components/GameHeading";
+import Footer from "./components/Footer";
 
 export interface GameQuery {
   genre: GenreUpdated | null;
@@ -77,9 +78,9 @@ function App() {
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
 
-      <GridItem area="footer" bg="red.500" w="full">
+      <GridItem area="footer" w="full">
         <Box w="full" textAlign="center" p={4}>
-          Footer
+          <Footer />
         </Box>
       </GridItem>
     </Grid>
